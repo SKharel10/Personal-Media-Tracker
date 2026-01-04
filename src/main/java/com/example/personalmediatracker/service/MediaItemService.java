@@ -2,10 +2,13 @@ package com.example.personalmediatracker.service;
 
 
 import com.example.personalmediatracker.model.MediaItem;
+import com.example.personalmediatracker.model.MediaType;
 import com.example.personalmediatracker.repository.MediaItemRepository;
+import org.springframework.stereotype.Service;
 
+import javax.print.attribute.standard.Media;
 import java.util.List;
-
+@Service
 public class MediaItemService {
     private final MediaItemRepository mediaItemRepository;
 
@@ -13,11 +16,30 @@ public class MediaItemService {
         this.mediaItemRepository = mediaItemRepository;
     }
 
-    public List<MediaItem> getMediaItems(){
+    public List<MediaItem> getAllMediaItems(){
         return mediaItemRepository.findAll();
     }
-    public MediaItem getMediaItem(Long id){
+    public MediaItem getMediaItemById(Long id){
         return mediaItemRepository.findById(id)
                 .orElseThrow( () -> new IllegalArgumentException(id + "not found"));
     }
+    public void insertMediaItem(MediaItem mediaItem){
+
+        // checks
+        if (mediaItem.getTotalUnits() < 0){
+            throw new IllegalArgumentException("Total units must be greater than 0");
+        }
+
+        mediaItemRepository.save(mediaItem);
+    }
+
+    public void updateMediaItem(MediaItem mediaItem, Long id){
+        MediaItem selectedMediaItem = mediaItemRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException(id + "not found"));
+        
+        selectedMediaItem.setMediaType(mediaItem.getMediaType());
+        selectedMediaItem.setProgressStatus(mediaItem.getProgressStatus());
+        selectedMediaItem.setTotalUnits(mediaItem.getTotalUnits());
+    }
+
 }
