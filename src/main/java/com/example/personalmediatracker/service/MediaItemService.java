@@ -33,13 +33,21 @@ public class MediaItemService {
         mediaItemRepository.save(mediaItem);
     }
 
-    public void updateMediaItem(MediaItem mediaItem, Long id){
+    public void updateMediaItemById(MediaItem mediaItem, Long id){
         MediaItem selectedMediaItem = mediaItemRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException(id + "not found"));
-        
+
         selectedMediaItem.setMediaType(mediaItem.getMediaType());
         selectedMediaItem.setProgressStatus(mediaItem.getProgressStatus());
         selectedMediaItem.setTotalUnits(mediaItem.getTotalUnits());
+
+        mediaItemRepository.save(selectedMediaItem);
     }
 
+    public void deleteMediaItemById(Long id){
+        MediaItem selectedMediaItem = mediaItemRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException(id + "not found"));
+
+        mediaItemRepository.delete(selectedMediaItem);
+    }
 }

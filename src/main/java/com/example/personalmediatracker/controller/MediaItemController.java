@@ -26,4 +26,12 @@ public class MediaItemController {
     public void insertMediaItem(@RequestBody MediaItem mediaItem){
         mediaItemService.insertMediaItem(mediaItem);
     }
+    @PutMapping("{id}")
+    public void updateMediaItemById(@RequestBody MediaItem mediaItem, @PathVariable Long id){
+        mediaItemService.updateMediaItemById(mediaItem, id);
+    }
+    @DeleteMapping("{id}")
+    public void deleteMediaItemById(@PathVariable Long id){
+        mediaItemService.deleteMediaItemById(id);
+    }
 }
