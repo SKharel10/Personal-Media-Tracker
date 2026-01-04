@@ -1,4 +1,3 @@
 package com.example.personalmediatracker.service;
 
-public class MediaItemService {
-}
+public class MediaItemService {}

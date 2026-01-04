@@ -1,4 +1,6 @@
 package com.example.personalmediatracker.repository;
 
-public interface MediaItemRepository {
-}
+import com.example.personalmediatracker.model.MediaItem;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface MediaItemRepository extends JpaRepository<MediaItem, Long> {}
