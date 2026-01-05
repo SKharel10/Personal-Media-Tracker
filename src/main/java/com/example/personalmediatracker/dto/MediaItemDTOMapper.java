@@ -12,7 +12,9 @@ public class MediaItemDTOMapper implements Function<MediaItem, MediaItemDTO> {
                 mediaItem.getTitle(),
                 mediaItem.getProgressStatus(),
                 mediaItem.getProgress(),
-                mediaItem.getTotalUnits());
+                mediaItem.getTotalUnits(),
+                mediaItem.getProgressStatus()
+                );
     }
 
 }

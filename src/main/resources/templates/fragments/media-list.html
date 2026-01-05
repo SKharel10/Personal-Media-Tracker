@@ -1,0 +1,11 @@
+<ul>
+    <li th:each="item : ${mediaItems}">
+        <strong th:text="${item.title}"></strong>
+        —
+        <span th:text="${item.progress}"></span> /
+        <span th:text="${item.totalUnits}"></span>
+        (
+        <span th:text="${item.progressStatus}"></span>
+        )
+    </li>
+</ul>

@@ -6,7 +6,8 @@ public record MediaItemDTO(
         String title,
         ProgressStatus status,
         Integer progress,
-        Integer totalUnits
+        Integer totalUnits,
+        ProgressStatus progressStatus
 ){
 
 }
