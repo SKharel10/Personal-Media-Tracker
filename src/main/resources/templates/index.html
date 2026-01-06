@@ -6,11 +6,36 @@
     <script th:src="@{/js/htmx.min.js}"></script>
 </head>
 <body>
-    <h1>Saved Media</h1>
-    <div
-            hx-get="/media"
-            hx-trigger="load"
-            hx-swap="innerHTML">
-    </div>
+
+<form
+        hx-post="/media"
+        hx-target="#media-list"
+        hx-swap="innerHTML">
+
+    <input
+            type="text"
+            name="title"
+            placeholder="Title"
+            required/>
+
+    <input
+            type="number"
+            name="totalUnits"
+            placeholder="Total Units"
+            required/>
+
+    <button type="submit">Add</button>
+
+</form>
+
+<h1>Saved Media</h1>
+
+<div
+        id="media-list"
+        hx-get="/media"
+        hx-trigger="load"
+        hx-swap="innerHTML">
+</div>
+
 </body>
 </html>
